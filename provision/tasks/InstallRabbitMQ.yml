@@ -1,0 +1,26 @@
+---
+- name: Adding the Erlang key
+  apt_key:
+    url: "http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc"
+    state: present
+- name: Installing Erlang and Erlang-Nox...
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - erlang
+    - erlang-nox
+- name: Adding the rabbitMQ key
+  apt_key:
+    url: "https://www.rabbitmq.com/rabbitmq-release-signing-key.asc"
+    state: present
+- name: Adding the rabbitMQ repository
+  apt_repository:
+    repo: deb http://www.rabbitmq.com/debian/ testing main
+    state: present
+- name: Installing RabbitMQ-server
+  apt:
+    name: rabbitmq-server
+    state: present
+    update_cache: yes

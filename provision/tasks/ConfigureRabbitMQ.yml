@@ -1,0 +1,5 @@
+---
+- name: Enable RabbitMQ management server on port 15672
+  rabbitmq_plugin:
+    names: rabbitmq_management
+    state: enabled
