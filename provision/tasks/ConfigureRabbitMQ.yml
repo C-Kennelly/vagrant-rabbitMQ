@@ -3,3 +3,14 @@
   rabbitmq_plugin:
     names: rabbitmq_management
     state: enabled
+
+- name: Creating administrator [vagrant] with password [vagrant]
+  rabbitmq_user:
+    user: vagrant
+    password: vagrant
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    tags: administrator
+    state: present
